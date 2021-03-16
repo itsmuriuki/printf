@@ -10,8 +10,8 @@
  */
 typedef struct spec
 {
-  char *s;
-  char *(*printspec)(va_list);
+char *s;
+char *(*printspec)(va_list);
 } specifiers;
 
 int formats(const char *form, specifiers *spec, va_list args, char *b, int *bi);
