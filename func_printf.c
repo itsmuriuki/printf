@@ -1,76 +1,143 @@
+#include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include "holberton.h"
+#include <stdlib.h>
 
 /**
- * fun_string - print string
- * @arguments: va_list
- * Return: string
+ *printchar - prints a character
+ *@list: variadic list of arguments
+ *
+ *Return: number of characters printed to stdout
  */
-int fun_string(va_list arguments)
+char *printchar(va_list list)
 {
-char *str;
+char *character;
 int i = 0;
 
-str = va_arg(arguments, char *);
-if (str == NULL)
-{
-str = "(null)";
+character = malloc(2);
+if (character == NULL)
+return (NULL);
+character[i] = (va_arg(list, int));
+if (character[i] == 0)
+return (character);
+character[i + 1] = '\0';
+return (character);
 }
-for (; *str; str++)
+
+/**
+ *printstr - prints a string
+ *@list: variadic list of arguments
+ *
+ *Return: number of characters printed to stdout
+ */
+char *printstr(va_list list)
 {
-putchar(*str);
+int i = 0;
+char *str;
+char *print;
+
+str = va_arg(list, char *);
+if (str == NULL)
+str = "(null)";
+while (str[i] != '\0')
+i++;
+print = malloc(i + 1);
+if (print == NULL)
+return (NULL);
+i = 0;
+while (str[i] != '\0')
+{
+print[i] = str[i];
 i++;
 }
-return (i);
+print[i] = '\0';
+return (print);
 }
 
 /**
- * fun_character - print character
- * @arguments: va_list
- * Return: character
+ *printint - prints an integer
+ *@list: variadic list of arguments
+ *
+ *Return: number of characters printed to stdout
  */
-int fun_character(va_list arguments)
+char *printint(va_list list)
 {
-int x = 0;
+int tens = 1;
+int i = 0;
+int num = va_arg(list, int);
+int tensit = num;
+char *integer;
 
-x = va_arg(arguments, int);
-_putchar(x);
-return (1);
+integer = malloc(33);
+if (integer == NULL)
+return (NULL);
+if (num == 0)
+{
+integer[i] = 0 + '0';
+return (integer);
+}
+num = num / 10;
+if (tensit < 0)
+{
+integer[i] = '-';
+i++;
+}
+while (num != 0)
+{
+num = num / 10;
+tens *= 10;
 }
 
-/**
- * fun_integer - print integer and digit
- * @arguments: va_list
- * Return: int
- */
-int fun_integer(va_list arguments)
+while (tens != 0)
 {
-int i, d, length;
-unsigned int x;
-
-i  = va_arg(arguments, int);
-d = 1;
-length = 0;
-
-if (i < 0)
-{
-length = length + _putchar('-');
-x = i * -1;
-}
+if (tensit >= 0)
+integer[i] = (tensit / tens) + '0';
 else
-{
-x = i;
+integer[i] = (-1 * (tensit / tens)) + '0';
+tensit = tensit % tens;
+tens /= 10;
+i++;
+}
+integer[i] = '\0';
+return (integer);
 }
 
-while (x / d > 9)
-d = d * 10;
-
-while (d != 0)
+/**
+ *printuint - prints an unsigned int
+ *@list: variadic argument list
+ *
+ *Return: number of characters printed to stdout
+ */
+char *printuint(va_list list)
 {
-length = length + _putchar('0' + x / d);
-x = x % d;
-d = d / 10;
+unsigned int tens = 1;
+unsigned int i = 0;
+unsigned int num = va_arg(list, unsigned int);
+unsigned int tensit = num;
+char *unsignedint;
+
+unsignedint = malloc(33);
+if (unsignedint == NULL)
+return (NULL);
+if (num == 0)
+{
+unsignedint[i] = 0 + '0';
+return (unsignedint);
 }
-return (length);
+num = num / 10;
+while (num != 0)
+{
+num = num / 10;
+tens *= 10;
+}
+
+while (tens != 0)
+{
+unsignedint[i] = ((tensit / tens) + '0');
+tensit = tensit % tens;
+tens /= 10;
+i++;
+}
+unsignedint[i] = '\0';
+return (unsignedint);
 }
