@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "dhk.h"
+#include "holberton.h"
 
 /**
  *_printf - prints a string with specifiers
