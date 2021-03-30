@@ -1,6 +1,6 @@
 .TH man 3 "30th March 2020" "0.00" "_printf man page"
 . SH NAME
-printf - prints the character(s)
+printf - prints a formated string
 .SH SYNOPSIS
 #include "holberton.h"
 int _printf(const char *format, ...);
