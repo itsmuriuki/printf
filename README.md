@@ -224,6 +224,6 @@ itsmuriuki@ubuntu:~/printf$
 
 ## Authors
 - [Gerald Muriuki](https://github.com/itsmuriuki)
-- [Arthur Damm](https://github.com/theurikenethe)
+- [Theuri Kenneth](https://github.com/theurikenneth)
 
 
