@@ -1,8 +1,8 @@
-.TH man 3 "27 February 2018" "0.00" "_printf man page"
+.TH man 3 "30th March 2020" "0.00" "_printf man page"
 . SH NAME
 printf - prints the character(s)
 .SH SYNOPSIS
-#include "dhk.h"
+#include "holberton.h"
 int _printf(const char *format, ...);
 .SH DESCRIPTION
 The printf function creates an output of a character string in
